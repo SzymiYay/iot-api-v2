@@ -12,8 +12,6 @@ from src.auth import schemas as auth_schema
 
 from src import models
 
-from src import db_config
-
 oauth2_scheme = OAuth2PasswordBearer(
     tokenUrl="/api/v1/auth/login"
     )
