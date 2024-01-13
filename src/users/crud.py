@@ -4,6 +4,7 @@ from fastapi_sqlalchemy import db
 from src import models
 from src.users import schemas
 
+
 def deactivate_account(user_id: int):
     db_user = db.session.query(models.User).filter(models.User.id == user_id).first()
 
@@ -50,6 +51,10 @@ def create_device(device: schemas.Device, user_id: int):
 
 
 def delete_device(device_id: int):
+    db_measurements = db.session.query(models.Measurement).filter(models.Measurement.device_id == device_id).all()
+    for db_measurement in db_measurements:
+        db.session.delete(db_measurement)
+        
     db_device = db.session.query(models.Device).filter(models.Device.id == device_id).first()
 
     if not db_device:

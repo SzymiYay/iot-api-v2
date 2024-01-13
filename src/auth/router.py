@@ -53,5 +53,5 @@ async def login_for_access_token(from_data: OAuth2PasswordRequestForm = Depends(
             status_code=status.HTTP_201_CREATED,
             response_description="Token refreshed successfully")
 async def refresh_token(refresh_token: auth_schema.RefreshToken):
-    token = await jwt_util.refresh_token(refresh_token.refresh_token)
+    token = jwt_util.refresh_token(refresh_token.refresh_token)
     return token

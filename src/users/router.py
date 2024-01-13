@@ -5,6 +5,8 @@ from src.users import schemas as user_schema
 from src.utils import jwt_util
 from src.users import crud as user_crud
 
+from src.logger import logger
+
 router = APIRouter(
     prefix="/api/v1",
     tags=["Users"]

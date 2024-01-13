@@ -6,6 +6,8 @@ from src.measurements import schemas as measurement_schema
 from src.users import schemas as user_schema
 from src.measurements import crud as measurement_crud
 
+from src.logger import logger
+
 
 router = APIRouter(
     prefix="/api/v1",

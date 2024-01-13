@@ -12,9 +12,18 @@ from src.auth import schemas as auth_schema
 
 from src import models
 
+from src import db_config
+
 oauth2_scheme = OAuth2PasswordBearer(
     tokenUrl="/api/v1/auth/login"
     )
+
+# async def get_user(username: str) -> user_schema.UserInDB or None:
+#     query = db_config.users.select().where(db_config.users.c.username == username)
+#     db_user = await db_config.database.fetch_one(query)
+#     if db_user:
+#         return db_user
+#     return None
 
 
 def get_user(username: str) -> user_schema.UserInDB or None:
