@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from fastapi_sqlalchemy import DBSessionMiddleware
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
 from src.auth import router as auth_router
@@ -88,7 +88,13 @@ async def startup():
 async def shutdown():
     await database.disconnect()
 
-app.add_middleware(DBSessionMiddleware, db_url=DATABASE_URL)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(auth_router.router, tags=["Auth"])
 app.include_router(user_router.router, tags=["Users"])
