@@ -6,6 +6,7 @@ from src.auth import router as auth_router
 from src.users import router as user_router
 from src.measurements import router as measurement_router
 from src import docs
+from sqlalchemy import text
 
 import os
 import urllib
