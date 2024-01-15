@@ -56,16 +56,6 @@ Project consists of 1 microservice:
 ```
 ## Run locally
 
-### One command setup
-1. Docker Desktop must be running
-2. Open Git Bash
-3. Run command
-```bash
-./run.sh
-```
-
-### Each step of setup
-
 ### Virtual environment
 #### Create
 ```bash
@@ -76,58 +66,12 @@ python -m venv venv
  ./venv/Scripts/activate
 ```
 
-### Install dependencies
+#### Install dependencies
 ```bash
-pip install fastapi fastapi-sqlalchemy pydantic alembic psycopg2 uvicorn python-dotenv python-multipart python-jose[cryptography] passlib[bcrypt] python-multipart
+pip install -r requirements.txt
 ```
 
-### Create alembic
-```bash
-alembic init alembic
-```
-
-### Run
-```bash
-docker-compose build
-docker-compose up
-```
-
-### Migrations
-```bash
-docker-compose run app alembic revision --autogenerate -m "New Migration"
-docker-compose run app alembic upgrade head
-```
-
-### Local development
+#### Run
 ```bash
 uvicorn src.main:app --reload
 ```
-
-### API documentation
-```bash
-http://localhost:8000/docs
-```
-
-### PGAdmin
-```bash
-http://localhost:5050
-```
-1. Login
-```bash
-email: admin@admin.com
-password: admin
-```
-2. Add new server
-```bash
-host: db
-name: db
-port: 5432
-username: postgres
-password: password
-```
-
-
-
-
-
-
