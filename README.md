@@ -11,10 +11,7 @@
       - [Create](#create)
       - [Activate](#activate)
     - [Install dependencies](#install-dependencies)
-    - [Create alembic](#create-alembic)
     - [Run](#run)
-    - [Migrations](#migrations)
-    - [Local development](#local-development)
 
 ## Prerequisites
 Scripts are written for all platforms, but they were tested only on Windows 11.
@@ -54,6 +51,8 @@ Project consists of 1 microservice:
     }
 ]
 ```
+
+
 ## Run locally
 
 ### Virtual environment
@@ -66,12 +65,12 @@ python -m venv venv
  ./venv/Scripts/activate
 ```
 
-#### Install dependencies
+### Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-#### Run
+### Run
 ```bash
 uvicorn src.main:app --reload
 ```
