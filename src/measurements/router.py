@@ -1,12 +1,9 @@
 from fastapi import Depends, status, APIRouter
-from fastapi_sqlalchemy import db
 
 from src.utils import jwt_util
 from src.measurements import schemas as measurement_schema
 from src.users import schemas as user_schema
 from src.measurements import crud as measurement_crud
-
-from src.logger import logger
 
 
 router = APIRouter(

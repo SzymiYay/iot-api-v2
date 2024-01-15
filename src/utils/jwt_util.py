@@ -6,22 +6,13 @@ from fastapi.security import OAuth2PasswordBearer
 
 from src.utils import crypto_util
 from src.utils import constant_util
-
 from src.users import schemas as user_schema
 from src.auth import schemas as auth_schema
-
 from src import models
 
 oauth2_scheme = OAuth2PasswordBearer(
     tokenUrl="/api/v1/auth/login"
     )
-
-# async def get_user(username: str) -> user_schema.UserInDB or None:
-#     query = db_config.users.select().where(db_config.users.c.username == username)
-#     db_user = await db_config.database.fetch_one(query)
-#     if db_user:
-#         return db_user
-#     return None
 
 
 def get_user(username: str) -> user_schema.UserInDB or None:

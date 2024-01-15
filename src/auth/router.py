@@ -1,14 +1,11 @@
 from fastapi import Depends, HTTPException, status, APIRouter
 from fastapi.security import OAuth2PasswordRequestForm
 from datetime import timedelta
-from fastapi_sqlalchemy import db
 
 from src.auth import crud as auth_crud
+from src.auth import schemas as auth_schema
 from src.utils import jwt_util
 from src.utils import constant_util
-
-from src.auth import schemas as auth_schema
-from src import models as auth_model
 
 
 router = APIRouter(
