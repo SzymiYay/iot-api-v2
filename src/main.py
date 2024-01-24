@@ -49,7 +49,7 @@ measurements = sqlalchemy.Table(
 devices = sqlalchemy.Table(
     "devices",
     metadata,
-    sqlalchemy.Column("id", sqlalchemy.String, primary_key=True),
+    sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),
     sqlalchemy.Column("name", sqlalchemy.String),
     sqlalchemy.Column("time_created", sqlalchemy.DateTime, server_default=text("CURRENT_TIMESTAMP")),
     sqlalchemy.Column("time_updated", sqlalchemy.DateTime, onupdate=text("CURRENT_TIMESTAMP")),
