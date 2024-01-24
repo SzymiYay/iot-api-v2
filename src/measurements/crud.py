@@ -10,8 +10,8 @@ logger = app_logger.get_logger()
 
 
 def create_measurement(measurement: schemas.Measurement):
-    db_device = user_crud.get_device(measurement.device_id)
-    db_measurement = measurement_model.Measurement(temperature=measurement.temperature, device_id=db_device.id)
+    db_device = user_crud.get_device_by_name(measurement.device_name)
+    db_measurement = measurement_model.Measurement(temperature=measurement.temperature, device_name=db_device.name)
     db.session.add(db_measurement)
     db.session.commit()
     return db_measurement
