@@ -43,8 +43,8 @@ def get_device(device_id: int):
     return db_device
 
 
-def create_device(device: schemas.Device, user_id: int):
-    db_device = models.Device(name=device.name, user_id=user_id)
+def create_device(device, user_id: int):
+    db_device = models.Device(name=device.device_id, user_id=user_id)
     db.session.add(db_device)
     db.session.commit()
     return db_device
@@ -56,6 +56,16 @@ def delete_device(device_id: int):
         db.session.delete(db_measurement)
         
     db_device = db.session.query(models.Device).filter(models.Device.id == device_id).first()
+
+    if not db_device:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Device not found")
+    
+    db.session.delete(db_device)
+    db.session.commit()
+    return db_device
+
+def delete_device_by_name(device_name: str):
+    db_device = db.session.query(models.Device).filter(models.Device.name == device_name).first()
 
     if not db_device:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Device not found")
