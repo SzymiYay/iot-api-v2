@@ -45,6 +45,6 @@ async def get_measurements(current_user: user_schema.User = Depends(jwt_util.get
             tags=["Measurements"],
             status_code=status.HTTP_200_OK,
             response_description="Measurements")
-async def get_measurements_by_device_id(device_id: int, current_user: user_schema.User = Depends(jwt_util.get_current_active_user)):
-    db_measurements = measurement_crud.get_measurements_by_device(device_id)
+async def get_measurements_by_device_id(device_name: str, current_user: user_schema.User = Depends(jwt_util.get_current_active_user)):
+    db_measurements = measurement_crud.get_measurements_by_device(device_name)
     return db_measurements

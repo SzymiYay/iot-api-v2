@@ -27,6 +27,6 @@ def get_measurements():
     return db_measurements
 
 
-def get_measurements_by_device(device_id: int):
-    db_measurements = db.session.query(measurement_model.Measurement).filter(measurement_model.Measurement.device_id == device_id).all()
+def get_measurements_by_device(device_name: str):
+    db_measurements = db.session.query(measurement_model.Measurement).filter(measurement_model.Measurement.device_name == device_name).all()
     return db_measurements
