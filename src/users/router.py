@@ -72,7 +72,7 @@ async def create_device(device_name: str, current_user: user_schema.User = Depen
         }
 
         if policy_name is not None:
-            rawtoken['skn'] = policy_name
+            rawtoken['skn'] = policy_name 
 
         return 'SharedAccessSignature ' + parse.urlencode(rawtoken)
     
