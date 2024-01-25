@@ -57,7 +57,7 @@ async def get_devices(current_user: user_schema.User = Depends(jwt_util.get_curr
           tags=["Users"],
           status_code=status.HTTP_201_CREATED,
           response_description="Device created successfully")
-async def create_device(device_name: str, current_user: user_schema.User = Depends(jwt_util.get_current_active_user)):
+async def create_device(current_user: user_schema.User = Depends(jwt_util.get_current_active_user)):
     
     def generate_sas_token(uri, key, policy_name=None, expiry=14400000):
         ttl = time() + expiry
