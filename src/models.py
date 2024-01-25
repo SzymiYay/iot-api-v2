@@ -23,7 +23,7 @@ class Measurement(Base):
     temperature = Column(Integer, nullable=False)
     time_created = Column(DateTime(timezone=True), server_default=func.now())
     time_updated = Column(DateTime(timezone=True), onupdate=func.now())
-    device_id = Column(Integer, ForeignKey('devices.id'))
+    device_name = Column(String, ForeignKey('devices.name'))
 
     device = relationship('Device')
 
