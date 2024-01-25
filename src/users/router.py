@@ -5,6 +5,7 @@ from hashlib import sha256
 from time import time
 from urllib import parse
 from hmac import HMAC
+import uuid
 
 from src.users import schemas as user_schema
 
@@ -15,7 +16,6 @@ from src.logger import logger
 
 # Dane do połączenia
 iothub_connection_str = "HostName=IOTprojekt.azure-devices.net;SharedAccessKeyName=API;SharedAccessKey=jgzHre8mmua7L74zjb2Ji54dwts4faCiyAIoTD26ics="
-device_id = "NazwaTwojegoUrzadzenia3"
 
 # Tworzenie klienta IoT Hub
 registry_manager = IoTHubRegistryManager(iothub_connection_str)
@@ -76,11 +76,13 @@ async def create_device(device_name: str, current_user: user_schema.User = Depen
 
         return 'SharedAccessSignature ' + parse.urlencode(rawtoken)
     
+    device_name = str(uuid.uuid4())
+    
     device = registry_manager.create_device_with_sas(device_name, primary_key=None, secondary_key=None, status='enabled')
     primary_key = device.authentication.symmetric_key.primary_key if device.authentication.symmetric_key else None
-    sas_token = generate_sas_token(f"IOTprojekt.azure-devices.net/devices/{device_id}", primary_key)
+    sas_token = generate_sas_token(f"IOTprojekt.azure-devices.net/devices/{device_name}", primary_key)
     db_device = user_crud.create_device(device, current_user.id)
-    return {"message": "Device created successfully", "name": db_device.name, "primary_key": primary_key, "sas_token": sas_token}
+    return {"message": "Device created successfully", "id": db_device.id, "name": db_device.name, "primary_key": primary_key, "sas_token": sas_token}
 
 
 @router.delete("/users/devices/{device_id}", 
