@@ -43,14 +43,14 @@ measurements = sqlalchemy.Table(
     sqlalchemy.Column("temperature", sqlalchemy.Float),
     sqlalchemy.Column("time_created", sqlalchemy.DateTime, server_default=text("CURRENT_TIMESTAMP")),
     sqlalchemy.Column("time_updated", sqlalchemy.DateTime, onupdate=text("CURRENT_TIMESTAMP")),
-    sqlalchemy.Column("device_name", sqlalchemy.String, sqlalchemy.ForeignKey("devices.name")),
+    sqlalchemy.Column("device_id", sqlalchemy.String, sqlalchemy.ForeignKey("devices.id")),
 )
 
 devices = sqlalchemy.Table(
     "devices",
     metadata,
     sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),
-    sqlalchemy.Column("name", sqlalchemy.String, unique=True),
+    sqlalchemy.Column("name", sqlalchemy.String),
     sqlalchemy.Column("time_created", sqlalchemy.DateTime, server_default=text("CURRENT_TIMESTAMP")),
     sqlalchemy.Column("time_updated", sqlalchemy.DateTime, onupdate=text("CURRENT_TIMESTAMP")),
     sqlalchemy.Column("user_id", sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id")),

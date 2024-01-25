@@ -42,14 +42,6 @@ def get_device(device_id: int):
 
     return db_device
 
-def get_device_by_name(device_name: str):
-    db_device = db.session.query(models.Device).filter(models.Device.name == device_name).first()
-
-    if not db_device:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Device not found")
-
-    return db_device
-
 
 def create_device(device, user_id: int):
     db_device = models.Device(name=device.device_id, user_id=user_id)
