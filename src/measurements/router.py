@@ -40,7 +40,7 @@ async def get_measurements(current_user: user_schema.User = Depends(jwt_util.get
     return db_measurements
 
 
-@router.get("/measurements/devices/{device_id}",
+@router.get("/measurements/devices/{device_name}",
             response_model=list[measurement_schema.MeasurementReturn],
             tags=["Measurements"],
             status_code=status.HTTP_200_OK,
